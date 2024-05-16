@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SignupInput } from 'adityamediumtypes';
 import axios from 'axios';
@@ -17,11 +17,11 @@ const Auth = ({ type }: { type: 'signup' | 'signin' }) => {
         `${BACKEND_URL}/api/v1/user/${type === 'signup' ? 'signup' : 'signin'}`,
         postInputs,
       );
-      const jwt = response.data;
+      const { jwt } = response.data;
       localStorage.setItem('token', jwt);
       navigate('/blogs');
     } catch (error: unknown) {
-      console.info(error);
+      alert(error);
     }
   }
   return (
